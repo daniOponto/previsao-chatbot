@@ -105,4 +105,4 @@ if st.button('Prever', key='prediction'):
     st.success(f'A previsão para a data de entrega é de {round(y_pred[0], 2)} dias.')
 
 # Inicializando o chatbot
-chatbot()
+chatbot(df)
