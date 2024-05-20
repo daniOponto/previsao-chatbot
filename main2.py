@@ -51,7 +51,7 @@ def buscar_pedido(codigo_cliente):
         return formatted_order
 
 # Função Chatbot
-def chatbot():
+def chatbot(df):  # Adicionando df como argumento
     st.title("Bem-vindo ao Atendimento Virtual da Hold Logistica!")
     st.write("Olá, meu nome é Ingor! Como posso ajudá-lo hoje?")
     
@@ -73,7 +73,7 @@ def chatbot():
     elif opcao == opcoes_menu[1]:  # Informações sobre o pedido
         codigo_cliente = st.text_input("Insira o código do seu pedido:")
         if codigo_cliente:
-            st.write(buscar_pedido(codigo_cliente))
+            st.write(buscar_pedido(df, codigo_cliente))  # Passando df como argumento
     elif opcao == opcoes_menu[2]:  # Sair do atendimento
         st.write("Até logo!")
 
