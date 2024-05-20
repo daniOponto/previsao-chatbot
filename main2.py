@@ -39,7 +39,7 @@ empresa_respostas = {
 }
 
 # Função para buscar detalhes do pedido
-def buscar_pedido(codigo_cliente):
+def buscar_pedido(df, codigo_cliente):  # Adicione df como argumento
     order_data = df[df['Order ID'] == codigo_cliente]
     if order_data.empty:
         return 'Nenhum pedido encontrado para este código de cliente.'
@@ -104,5 +104,5 @@ if st.button('Prever', key='prediction'):
     st.markdown("## Resultado da Previsão")
     st.success(f'A previsão para a data de entrega é de {round(y_pred[0], 2)} dias.')
 
-# Inicializando o chatbot
+# Inicializando o chatbot passando df como argumento
 chatbot(df)
