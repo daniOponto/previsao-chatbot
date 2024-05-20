@@ -46,8 +46,8 @@ def buscar_pedido(df, codigo_cliente):
     else:
         order = order_data.iloc[0]
         formatted_order = f"Seguem os dados do seu pedido:\n"
-        formatted_order += f"Foi realizado em {order['order_date']} na cidade de {order['city']} no estado de {order['state']}.\n"
-        formatted_order += f"A categoria de entrega é {order['ship_mode']} e seu produto {order['category']} chegará em {order['ship_date']}."
+        formatted_order += f"Foi realizado em {order['order_date'].strftime('%Y-%m-%d')} na cidade de {order['city']} no estado de {order['state']}.\n"
+        formatted_order += f"A categoria de entrega é {order['ship_mode']} e seu produto {order['category']} chegará em {order['ship_date'].strftime('%Y-%m-%d')}."
         return formatted_order
 
 # Função Chatbot
