@@ -82,53 +82,8 @@ def previsao_entrega():
 # Função para a outra aplicação
 def outra_aplicacao():
     st.write("Essa é a outra aplicação.")
-    import pandas as pd
-    import streamlit as st
+    # Coloque aqui o código da outra aplicação
 
-    # Carregar dados da planilha Excel
-    df = pd.read_excel('bdpi.xlsx')  # Ajuste o caminho do arquivo conforme necessário
-
-    # Respostas para as opções sobre a empresa
-    empresa_respostas = {
-        '1': 'Nossa empresa foi fundada em 2022 e desde então temos trabalhado para fornecer os melhores produtos e serviços aos nossos clientes.',
-        '2': 'Somos uma empresa que garante que seu produto chegue em perfeito estado até você. Você pode encontrar mais informações em nosso site ou entrar em contato conosco para obter detalhes específicos.',
-        '3': 'Para entrar em contato conosco, você pode nos ligar no número XXX-XXXX, enviar um e-mail para contato@empresa.com ou visitar nossa sede no endereço Rua ABC, nº 123.'
-    }
-
-    # Função para buscar detalhes do pedido
-    def buscar_pedido(codigo_cliente):
-        order_data = df[df['Order ID'] == codigo_cliente]
-        if order_data.empty:
-            return 'Nenhum pedido encontrado para este código de cliente.'
-        else:
-            order = order_data.iloc[0]  # Acessar o primeiro pedido encontrado
-            formatted_order = f"Seguem os dados do seu pedido:\n"
-            formatted_order += f"Foi realizado em {order['Order Date']} na cidade de {order['City']} no estado de {order['State']}.\n"
-            formatted_order += f"A categoria de entrega é {order['Ship Mode']} e seu produto {order['Category']} chegará em {order['Ship Date']}."
-            return formatted_order
-
-    # Função Chatbot
-    def chatbot():
-        st.title("Bem-vindo ao Atendimento Virtual da Hold Logistica!")
-        st.write("Olá, meu nome é Ingor! Como posso ajudá-lo hoje?")
-        while True:
-            opcao = st.selectbox("Escolha uma opção:", ('Informações sobre a empresa', 'Informações sobre o pedido', 'Sair do atendimento'))
-
-            if opcao == 'Informações sobre a empresa':
-                opcao_empresa = st.selectbox("O que deseja saber sobre nós?", ('Mais informações sobre a empresa', 'Serviços prestados', 'Como entrar em contato conosco'))
-                st.write(empresa_respostas.get(opcao_empresa, 'Opção inválida.'))
-            elif opcao == 'Informações sobre o pedido':
-                codigo_cliente = st.text_input("Insira o código do seu pedido:")
-                if codigo_cliente:
-                    st.write(buscar_pedido(codigo_cliente))
-            elif opcao == 'Sair do atendimento':
-                st.write("Até logo!")
-                break
-
-    # Inicializando o chatbot
-    if __name__ == '__main__':
-        chatbot()
-        
 # Página principal
 def main():
     st.sidebar.title('Menu')
