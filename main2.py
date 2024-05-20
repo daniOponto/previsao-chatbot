@@ -6,7 +6,7 @@ from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 
 # Carregar os dados
-df = pd.read_excel('bdpi.xlsx')
+df = pd.read_excel('bancoDeDadosPi.xlsx')
 
 # Convertendo as colunas de data para o tipo datetime
 df['order_date'] = pd.to_datetime(df['order_date'], dayfirst=True)
