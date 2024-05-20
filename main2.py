@@ -39,19 +39,19 @@ empresa_respostas = {
 }
 
 # Função para buscar detalhes do pedido
-def buscar_pedido(df, codigo_cliente):  # Adicione df como argumento
+def buscar_pedido(df, codigo_cliente):  
     order_data = df[df['Order ID'] == codigo_cliente]
     if order_data.empty:
         return 'Nenhum pedido encontrado para este código de cliente.'
     else:
-        order = order_data.iloc[0]  # Acessar o primeiro pedido encontrado
+        order = order_data.iloc[0]
         formatted_order = f"Seguem os dados do seu pedido:\n"
-        formatted_order += f"Foi realizado em {order['Order Date']} na cidade de {order['City']} no estado de {order['State']}.\n"
-        formatted_order += f"A categoria de entrega é {order['Ship Mode']} e seu produto {order['Category']} chegará em {order['Ship Date']}."
+        formatted_order += f"Foi realizado em {order['order_date']} na cidade de {order['city']} no estado de {order['state']}.\n"
+        formatted_order += f"A categoria de entrega é {order['ship_mode']} e seu produto {order['category']} chegará em {order['ship_date']}."
         return formatted_order
 
 # Função Chatbot
-def chatbot(df):  # Adicionando df como argumento
+def chatbot(df):  
     st.title("Bem-vindo ao Atendimento Virtual da Hold Logistica!")
     st.write("Olá, meu nome é Ingor! Como posso ajudá-lo hoje?")
     
@@ -73,7 +73,7 @@ def chatbot(df):  # Adicionando df como argumento
     elif opcao == opcoes_menu[1]:  # Informações sobre o pedido
         codigo_cliente = st.text_input("Insira o código do seu pedido:")
         if codigo_cliente:
-            st.write(buscar_pedido(df, codigo_cliente))  # Passando df como argumento
+            st.write(buscar_pedido(df, codigo_cliente))  
     elif opcao == opcoes_menu[2]:  # Sair do atendimento
         st.write("Até logo!")
 
