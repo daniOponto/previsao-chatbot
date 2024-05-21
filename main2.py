@@ -80,30 +80,6 @@ def chatbot(df):
 # Criar a interface gráfica
 st.title('Previsão de Data de Entrega')
 
-# Entrada do usuário
-st.markdown("## Informações de Entrada")
-col1, col2 = st.columns(2)
-with col1:
-    country = st.selectbox("País:", df['country'].unique(), index=0)
-    state = st.selectbox("Estado:", df['state'].unique(), index=0)
-    city = st.selectbox("Cidade:", df['city'].unique(), index=0)
-with col2:
-    ship_mode = st.selectbox("Modo de Envio:", df['ship_mode'].unique(), index=0)
-    category = st.selectbox("Categoria:", df['category'].unique(), index=0)
-
-# Botão para fazer a previsão
-if st.button('Prever', key='prediction'):
-    # DataFrame com os dados de entrada
-    entrada = pd.DataFrame([[ship_mode, country, city, state, category]],
-                           columns=['ship_mode', 'country', 'city', 'state', 'category'])
-
-    # Previsão
-    y_pred = pipeline.predict(entrada)
-
-    # Exibir a previsão
-    st.markdown("## Resultado da Previsão")
-    st.success(f'A previsão para a data de entrega é de {round(y_pred[0], 2)} dias.')
-
 # Botão para acessar o chatbot
 if st.button('Acessar Chatbot'):
     chatbot(df)
