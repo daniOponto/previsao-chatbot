@@ -104,6 +104,17 @@ if st.button('Prever', key='prediction'):
     st.markdown("## Resultado da Previsão")
     st.success(f'A previsão para a data de entrega é de {round(y_pred[0], 2)} dias.')
 
+# Variável de estado para controlar se o chatbot está ativo ou não
+chatbot_ativo = False
+
 # Botão para acessar o chatbot
 if st.button('Acessar Chatbot'):
+    chatbot_ativo = True  # Ativar o chatbot quando o botão é pressionado
+
+# Se o chatbot estiver ativo, exibir o chatbot
+if chatbot_ativo:
     chatbot(df)
+
+# Se o chatbot estiver ativo e o usuário clicar no botão "Sair do atendimento", desativar o chatbot
+if chatbot_ativo and st.button('Sair do atendimento'):
+    chatbot_ativo = False
