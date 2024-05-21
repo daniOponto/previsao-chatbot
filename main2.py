@@ -113,16 +113,16 @@ elif opcao == 'Atendimento Virtual':
     st.title("Bem-vindo ao Atendimento Virtual da Hold Logistica!")
     st.write("Olá, meu nome é Ingor! Como posso ajudá-lo hoje?")
     
-    while True:
-        opcao_atendimento = st.selectbox("Escolha uma opção:", ('Informações sobre a empresa', 'Informações sobre o pedido', 'Sair do atendimento'))
+    opcao_atendimento = st.selectbox("Escolha uma opção:", ('', 'Informações sobre a empresa', 'Informações sobre o pedido', 'Sair do atendimento'))
 
+    if opcao_atendimento:
         if opcao_atendimento == 'Informações sobre a empresa':
-            opcao_empresa = st.selectbox("O que deseja saber sobre nós?", ('Mais informações sobre a empresa', 'Serviços prestados', 'Como entrar em contato conosco'))
-            st.write(empresa_respostas.get(opcao_empresa, 'Opção inválida.'))
+            opcao_empresa = st.selectbox("O que deseja saber sobre nós?", ('', 'Mais informações sobre a empresa', 'Serviços prestados', 'Como entrar em contato conosco'))
+            if opcao_empresa:
+                st.write(empresa_respostas.get(opcao_empresa, 'Opção inválida.'))
         elif opcao_atendimento == 'Informações sobre o pedido':
             codigo_pedido = st.text_input("Insira o código do seu pedido:")
             if codigo_pedido:
                 st.write(buscar_pedido(codigo_pedido, df))
         elif opcao_atendimento == 'Sair do atendimento':
             st.write("Até logo!")
-            break
