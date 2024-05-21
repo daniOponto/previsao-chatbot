@@ -38,6 +38,18 @@ empresa_respostas = {
     '3': 'Para entrar em contato conosco, você pode nos ligar no número XXX-XXXX, enviar um e-mail para contato@empresa.com ou visitar nossa sede no endereço Rua ABC, nº 123.'
 }
 
+# Função para buscar detalhes do pedido
+def buscar_pedido(df, codigo_cliente):  
+    order_data = df[df['Order ID'] == codigo_cliente]
+    if order_data.empty:
+        return 'Nenhum pedido encontrado para este código de cliente.'
+    else:
+        order = order_data.iloc[0]
+        formatted_order = f"Seguem os dados do seu pedido:\n"
+        formatted_order += f"Foi realizado em {order['order_date'].strftime('%Y-%m-%d')} na cidade de {order['city']} no estado de {order['state']}.\n"
+        formatted_order += f"A categoria de entrega é {order['ship_mode']} e seu produto {order['category']} chegará em {order['ship_date'].strftime('%Y-%m-%d')}."
+        return formatted_order
+
 # Função Chatbot
 def chatbot(df):  
     st.title("Bem-vindo ao Atendimento Virtual da Hold Logistica!")
@@ -72,12 +84,12 @@ st.title('Previsão de Data de Entrega')
 st.markdown("## Informações de Entrada")
 col1, col2 = st.columns(2)
 with col1:
-    country = st.selectbox("País:", df['country'].unique())
-    state = st.selectbox("Estado:", df['state'].unique())
-    city = st.selectbox("Cidade:", df['city'].unique())
+    country = st.selectbox("País:", df['country'].unique(), index=0)
+    state = st.selectbox("Estado:", df['state'].unique(), index=0)
+    city = st.selectbox("Cidade:", df['city'].unique(), index=0)
 with col2:
-    ship_mode = st.selectbox("Modo de Envio:", df['ship_mode'].unique())
-    category = st.selectbox("Categoria:", df['category'].unique())
+    ship_mode = st.selectbox("Modo de Envio:", df['ship_mode'].unique(), index=0)
+    category = st.selectbox("Categoria:", df['category'].unique(), index=0)
 
 # Botão para fazer a previsão
 if st.button('Prever', key='prediction'):
