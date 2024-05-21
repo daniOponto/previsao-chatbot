@@ -39,34 +39,16 @@ def prever_data_entrega(df):
     return pipeline
 
 # Função para buscar detalhes do pedido
-def buscar_pedido(codigo_cliente, df):
-    order_data = df[df['Order ID'] == codigo_cliente]
+def buscar_pedido(codigo_pedido, df):
+    order_data = df[df['Order ID'] == codigo_pedido]
     if order_data.empty:
-        return 'Nenhum pedido encontrado para este código de cliente.'
+        return 'Nenhum pedido encontrado para este código de pedido.'
     else:
         order = order_data.iloc[0]  # Acessar o primeiro pedido encontrado
         formatted_order = f"Seguem os dados do seu pedido:\n"
-        formatted_order += f"Foi realizado em {order['Order Date']} na cidade de {order['City']} no estado de {order['State']}.\n"
-        formatted_order += f"A categoria de entrega é {order['Ship Mode']} e seu produto {order['Category']} chegará em {order['Ship Date']}."
+        formatted_order += f"Foi realizado em {order['order_date']} na cidade de {order['city']} no estado de {order['state']}.\n"
+        formatted_order += f"A categoria de entrega é {order['ship_mode']} e seu produto {order['category']} chegará em {order['ship_date']}."
         return formatted_order
-
-# Função para exibir o atendimento virtual
-def atendimento_virtual():
-    st.title("Bem-vindo ao Atendimento Virtual da Hold Logistica!")
-    st.write("Olá, meu nome é Ingor! Como posso ajudá-lo hoje?")
-    while True:
-        opcao = st.selectbox("Escolha uma opção:", ('Informações sobre a empresa', 'Informações sobre o pedido', 'Sair do atendimento'))
-
-        if opcao == 'Informações sobre a empresa':
-            opcao_empresa = st.selectbox("O que deseja saber sobre nós?", ('Mais informações sobre a empresa', 'Serviços prestados', 'Como entrar em contato conosco'))
-            st.write(empresa_respostas.get(opcao_empresa, 'Opção inválida.'))
-        elif opcao == 'Informações sobre o pedido':
-            codigo_cliente = st.text_input("Insira o código do seu pedido:")
-            if codigo_cliente:
-                st.write(buscar_pedido(codigo_cliente, df))
-        elif opcao == 'Sair do atendimento':
-            st.write("Até logo!")
-            break
 
 # Configurações iniciais
 st.markdown(
@@ -128,4 +110,19 @@ if opcao == 'Previsão de Data de Entrega':
         st.success(f'A previsão para a data de entrega é de {round(y_pred[0], 2)} dias.')
 
 elif opcao == 'Atendimento Virtual':
-    atendimento_virtual()
+    st.title("Bem-vindo ao Atendimento Virtual da Hold Logistica!")
+    st.write("Olá, meu nome é Ingor! Como posso ajudá-lo hoje?")
+    
+    while True:
+        opcao_atendimento = st.selectbox("Escolha uma opção:", ('Informações sobre a empresa', 'Informações sobre o pedido', 'Sair do atendimento'))
+
+        if opcao_atendimento == 'Informações sobre a empresa':
+            opcao_empresa = st.selectbox("O que deseja saber sobre nós?", ('Mais informações sobre a empresa', 'Serviços prestados', 'Como entrar em contato conosco'))
+            st.write(empresa_respostas.get(opcao_empresa, 'Opção inválida.'))
+        elif opcao_atendimento == 'Informações sobre o pedido':
+            codigo_pedido = st.text_input("Insira o código do seu pedido:")
+            if codigo_pedido:
+                st.write(buscar_pedido(codigo_pedido, df))
+        elif opcao_atendimento == 'Sair do atendimento':
+            st.write("Até logo!")
+            break
