@@ -73,9 +73,9 @@ df = carregar_dados_excel('bancoDeDadosPI.xlsx')  # Ajuste o caminho do arquivo 
 
 # Inicializar o chatbot
 empresa_respostas = {
-    '1': 'Nossa empresa foi fundada em 2022 e desde então temos trabalhado para fornecer os melhores produtos e serviços aos nossos clientes.',
-    '2': 'Somos uma empresa que garante que seu produto chegue em perfeito estado até você. Você pode encontrar mais informações em nosso site ou entrar em contato conosco para obter detalhes específicos.',
-    '3': 'Para entrar em contato conosco, você pode nos ligar no número XXX-XXXX, enviar um e-mail para contato@empresa.com ou visitar nossa sede no endereço Rua ABC, nº 123.'
+    'Mais informações sobre a empresa': 'Nossa empresa foi fundada em 2022 e desde então temos trabalhado para fornecer os melhores produtos e serviços aos nossos clientes.',
+    'Serviços prestados': 'Somos uma empresa que garante que seu produto chegue em perfeito estado até você. Você pode encontrar mais informações em nosso site ou entrar em contato conosco para obter detalhes específicos.',
+    'Como entrar em contato conosco': 'Para entrar em contato conosco, você pode nos ligar no número XXX-XXXX, enviar um e-mail para contato@empresa.com ou visitar nossa sede no endereço Rua ABC, nº 123.'
 }
 
 # Botão para alternar entre funcionalidades
@@ -113,13 +113,11 @@ elif opcao == 'Atendimento Virtual':
     st.title("Bem-vindo ao Atendimento Virtual da Hold Logistica!")
     st.write("Olá, meu nome é Ingor! Como posso ajudá-lo hoje?")
     
-    opcao_atendimento = st.selectbox("Escolha uma opção:", ('', 'Informações sobre a empresa', 'Informações sobre o pedido', 'Sair do atendimento'))
+    opcao_atendimento = st.selectbox("Escolha uma opção:", ('', 'Mais informações sobre a empresa', 'Serviços prestados', 'Como entrar em contato conosco', 'Informações sobre o pedido', 'Sair do atendimento'))
 
     if opcao_atendimento:
-        if opcao_atendimento == 'Informações sobre a empresa':
-            opcao_empresa = st.selectbox("O que deseja saber sobre nós?", ('', 'Mais informações sobre a empresa', 'Serviços prestados', 'Como entrar em contato conosco'))
-            if opcao_empresa:
-                st.write(empresa_respostas.get(opcao_empresa, 'Opção inválida.'))
+        if opcao_atendimento in empresa_respostas:
+            st.write(empresa_respostas[opcao_atendimento])
         elif opcao_atendimento == 'Informações sobre o pedido':
             codigo_pedido = st.text_input("Insira o código do seu pedido:")
             if codigo_pedido:
