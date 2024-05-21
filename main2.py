@@ -84,12 +84,12 @@ st.title('Previsão de Data de Entrega')
 st.markdown("## Informações de Entrada")
 col1, col2 = st.columns(2)
 with col1:
-    country = st.selectbox("País:", df['country'].unique(), index=0)
-    state = st.selectbox("Estado:", df['state'].unique(), index=0)
-    city = st.selectbox("Cidade:", df['city'].unique(), index=0)
+    country = st.selectbox("País:", df['country'].unique())
+    state = st.selectbox("Estado:", df['state'].unique())
+    city = st.selectbox("Cidade:", df['city'].unique())
 with col2:
-    ship_mode = st.selectbox("Modo de Envio:", df['ship_mode'].unique(), index=0)
-    category = st.selectbox("Categoria:", df['category'].unique(), index=0)
+    ship_mode = st.selectbox("Modo de Envio:", df['ship_mode'].unique())
+    category = st.selectbox("Categoria:", df['category'].unique())
 
 # Botão para fazer a previsão
 if st.button('Prever', key='prediction'):
