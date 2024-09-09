@@ -27,10 +27,13 @@ Formada em **Ciência de Dados** e atualmente **pós-graduanda em Desenvolviment
 
 ## Projetos Recentes
 
-| Projeto                                | Descrição                                                                                   |
-|----------------------------------------|---------------------------------------------------------------------------------------------|
-| **Classificação de Imagens com CNNs**  | Implementação de redes neurais convolucionais para classificação de imagens com alta acurácia |
-| **Automação de Tickets (Zoho Flow)**   | Automação do fluxo de resposta a tickets fechados utilizando Zoho Flow                        |
+| Projeto                                  | Descrição                                                                                     |
+|------------------------------------------|-----------------------------------------------------------------------------------------------|
+| **Chatbot Inteligente**                  | Desenvolvimento de um chatbot capaz de interagir com usuários.                                |
+| **Análise de Sentimentos**               | Implementação de um modelo de análise de sentimentos para classificar opiniões de usuários.   |
+| **Previsão de Data de Entrega**          | Criação de um algoritmo preditivo que estima a data de entrega com base em dados históricos.  |
+| **Motor de Busca Interno**               | Desenvolvimento de um motor de busca eficiente para uma aplicação interna da empresa.         |
+| **Análises Exploratórias de Dados**      | Condução de análises exploratórias em grandes conjuntos de dados para identificar padrões e tendências. |
 
 ---
 
